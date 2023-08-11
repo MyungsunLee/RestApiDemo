@@ -5,14 +5,12 @@ import com.lms.restapidemo.member.service.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/members")
 public class MemberController {
 
   MemberService memberService;
@@ -20,13 +18,13 @@ public class MemberController {
     this.memberService = memberService;
   }
 
-  @PostMapping("/member")
+  @PostMapping("/")
   public ResponseEntity createMemer(@RequestBody Members members, Model model) throws Exception {
 
     memberService.createMember(members);
     return new ResponseEntity(HttpStatus.OK);
   }
-  @GetMapping("/member")
+  @GetMapping("/")
   public ResponseEntity getMemberList() {
     ResponseEntity re = new ResponseEntity(HttpStatus.OK);
 
@@ -34,7 +32,7 @@ public class MemberController {
     return new ResponseEntity(members,HttpStatus.OK);
   }
 
-  @PostMapping("/member/user")
+  @PostMapping("/id")
   public ResponseEntity login(@RequestBody Members members, Model model) throws Exception {
 
     boolean result = memberService.findMembersByMemberNameAndPassword(members);
