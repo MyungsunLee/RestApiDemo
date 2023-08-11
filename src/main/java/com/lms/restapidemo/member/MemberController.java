@@ -34,5 +34,18 @@ public class MemberController {
     return new ResponseEntity(members,HttpStatus.OK);
   }
 
+  @PostMapping("/member/user")
+  public ResponseEntity login(@RequestBody Members members, Model model) throws Exception {
+
+    boolean result = memberService.findMembersByMemberNameAndPassword(members);
+    String msg = "";
+    if(result == true) {
+      msg = "로그인 성공";
+    }else {
+      msg = "로그인 실패";
+    }
+
+    return new ResponseEntity(msg, HttpStatus.OK);
+  }
 }
 

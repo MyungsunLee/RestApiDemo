@@ -28,4 +28,15 @@ public class MemberService {
     return members;
   }
 
+  public boolean findMembersByMemberNameAndPassword(Members members) throws Exception{
+    members.setPassword(EncryptPassword.encrypt(members.getPassword()));
+    List<Members> member = memberRepository.findMembersByMemberNameAndPassword(members.getMemberName(), members.getPassword());
+
+    if(member.size() > 0) {
+      return true;
+    }else {
+      return false;
+    }
+  }
+
 }
