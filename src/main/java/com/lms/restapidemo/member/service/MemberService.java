@@ -1,5 +1,7 @@
 package com.lms.restapidemo.member.service;
 
+import com.lms.restapidemo.member.dto.MemberLoginRequest;
+import com.lms.restapidemo.member.dto.MemberLoginResponse;
 import com.lms.restapidemo.member.entity.Members;
 import com.lms.restapidemo.member.respsitory.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,14 +30,16 @@ public class MemberService {
     return members;
   }
 
-  public boolean findMembersByMemberNameAndPassword(Members members) throws Exception{
-    members.setPassword(EncryptPassword.encrypt(members.getPassword()));
-    List<Members> member = memberRepository.findMembersByMemberNameAndPassword(members.getMemberName(), members.getPassword());
+  public MemberLoginResponse findMembersByMemberNameAndPassword(MemberLoginRequest memberLoginRequest) throws Exception{
+    memberLoginRequest.setPassword(EncryptPassword.encrypt(memberLoginRequest.getPassword()));
+    List<Members> member = memberRepository.findMembersByMemberNameAndPassword(memberLoginRequest.getMemberName(), memberLoginRequest.getPassword());
 
     if(member.size() > 0) {
-      return true;
+      return MemberLoginResponse.builder()
+        .members(member.get(0))
+        .build();
     }else {
-      return false;
+      return null;
     }
   }
 

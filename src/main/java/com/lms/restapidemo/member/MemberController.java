@@ -1,5 +1,7 @@
 package com.lms.restapidemo.member;
 
+import com.lms.restapidemo.member.dto.MemberLoginRequest;
+import com.lms.restapidemo.member.dto.MemberLoginResponse;
 import com.lms.restapidemo.member.entity.Members;
 import com.lms.restapidemo.member.service.MemberService;
 import org.springframework.http.HttpStatus;
@@ -32,18 +34,11 @@ public class MemberController {
     return new ResponseEntity(members,HttpStatus.OK);
   }
 
-  @PostMapping("/id")
-  public ResponseEntity login(@RequestBody Members members, Model model) throws Exception {
+  @PostMapping("/login")
+  public ResponseEntity login(@RequestBody MemberLoginRequest memberLoginRequest, Model model) throws Exception {
 
-    boolean result = memberService.findMembersByMemberNameAndPassword(members);
-    String msg = "";
-    if(result == true) {
-      msg = "로그인 성공";
-    }else {
-      msg = "로그인 실패";
-    }
-
-    return new ResponseEntity(msg, HttpStatus.OK);
+    MemberLoginResponse memberLoginResponse = memberService.findMembersByMemberNameAndPassword(memberLoginRequest);
+    return new ResponseEntity(memberLoginResponse, HttpStatus.OK);
   }
 }
 
