@@ -1,7 +1,7 @@
 package com.lms.restapidemo.member;
 
-import com.lms.restapidemo.member.dto.MemberLoginRequest;
-import com.lms.restapidemo.member.dto.MemberLoginResponse;
+import com.lms.restapidemo.member.dto.memberLogin.MemberLoginRequest;
+import com.lms.restapidemo.member.dto.memberLogin.MemberLoginResponse;
 import com.lms.restapidemo.member.entity.Members;
 import com.lms.restapidemo.member.service.MemberService;
 import org.springframework.http.HttpStatus;

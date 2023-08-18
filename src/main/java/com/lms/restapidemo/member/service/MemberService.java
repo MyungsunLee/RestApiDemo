@@ -1,14 +1,13 @@
 package com.lms.restapidemo.member.service;
 
-import com.lms.restapidemo.member.dto.MemberLoginRequest;
-import com.lms.restapidemo.member.dto.MemberLoginResponse;
+import com.lms.restapidemo.member.dto.memberLogin.MemberLoginRequest;
+import com.lms.restapidemo.member.dto.memberLogin.MemberLoginResponse;
 import com.lms.restapidemo.member.entity.Members;
 import com.lms.restapidemo.member.respsitory.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.lms.restapidemo.common.EncryptPassword;
 
-import java.time.LocalDateTime;
 import java.sql.Timestamp;
 import java.util.List;
 
