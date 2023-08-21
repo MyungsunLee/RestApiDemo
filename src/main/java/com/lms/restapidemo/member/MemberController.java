@@ -2,6 +2,7 @@ package com.lms.restapidemo.member;
 
 import com.lms.restapidemo.member.dto.memberLogin.MemberLoginRequest;
 import com.lms.restapidemo.member.dto.memberLogin.MemberLoginResponse;
+import com.lms.restapidemo.member.dto.memberSave.MemberSaveRequest;
 import com.lms.restapidemo.member.entity.Members;
 import com.lms.restapidemo.member.service.MemberService;
 import org.springframework.http.HttpStatus;
@@ -21,9 +22,9 @@ public class MemberController {
   }
 
   @PostMapping("/")
-  public ResponseEntity createMemer(@RequestBody Members members, Model model) throws Exception {
+  public ResponseEntity createMemer(@RequestBody MemberSaveRequest memberSaveRequest, Model model) throws Exception {
 
-    memberService.createMember(members);
+    memberService.createMember(memberSaveRequest);
     return new ResponseEntity(HttpStatus.OK);
   }
   @GetMapping("/")

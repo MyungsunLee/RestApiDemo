@@ -2,6 +2,7 @@ package com.lms.restapidemo.member.service;
 
 import com.lms.restapidemo.member.dto.memberLogin.MemberLoginRequest;
 import com.lms.restapidemo.member.dto.memberLogin.MemberLoginResponse;
+import com.lms.restapidemo.member.dto.memberSave.MemberSaveRequest;
 import com.lms.restapidemo.member.entity.Members;
 import com.lms.restapidemo.member.respsitory.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +17,9 @@ import java.util.List;
 public class MemberService {
   private final MemberRepository memberRepository;
 
-  public Members createMember(Members member) throws Exception {
+  public Members createMember(MemberSaveRequest memberSaveRequest) throws Exception {
+    Members member = memberSaveRequest.toEntity();
     member.setPassword(EncryptPassword.encrypt(member.getPassword()));
-    member.setCreateDate(new Timestamp(System.currentTimeMillis()));
-    member.setUpdateDate(new Timestamp(System.currentTimeMillis()));
     Members result = memberRepository.save(member);
     return result;
   }
