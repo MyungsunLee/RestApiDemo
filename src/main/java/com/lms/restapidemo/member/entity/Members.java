@@ -1,5 +1,6 @@
 package com.lms.restapidemo.member.entity;
 
+import com.lms.restapidemo.member.dto.memberSave.MemberSaveResponse;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,14 +29,14 @@ public class Members {
   private String password;
 
   @Temporal(TemporalType.TIMESTAMP)
-  @Column(name = "CREATE_DATE", nullable = false)
+  @Column(name = "CREATE_DATE")
   private Timestamp createDate;
 
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "UPDATE_DATE")
   private Date updateDate;
 
-  @Column(name = "DELETE_YN", nullable = false)
+  @Column(name = "DELETE_YN")
   private char deleteYn;
 
   // get member list
@@ -43,5 +44,11 @@ public class Members {
     this.memberId = memberId;
     this.memberName = memberName;
     this.deleteYn = deleteYn;
+  }
+  public MemberSaveResponse toMemberSaveResponseDto(Members member) {
+    return MemberSaveResponse.builder()
+      .memberName(member.getMemberName())
+      .memberId(member.getMemberId())
+      .build();
   }
 }
