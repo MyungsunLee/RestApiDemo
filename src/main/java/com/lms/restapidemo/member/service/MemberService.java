@@ -18,10 +18,11 @@ import java.util.List;
 public class MemberService {
   private final MemberRepository memberRepository;
 
+
+
   public MemberSaveResponse createMember(MemberSaveRequest memberSaveRequest) throws Exception {
     Members member = memberSaveRequest.toEntity();
     member.setPassword(EncryptPassword.encrypt(member.getPassword()));
-    // Members result = memberRepository.save(member);
     Members result = memberRepository.save(member);
     return result.toMemberSaveResponseDto(result);
   }
