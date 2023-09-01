@@ -5,14 +5,18 @@ spring:
     username: root
     password: 1234
   jpa:
-    generate-ddl: true
     hibernate:
-      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: none
     properties:
-      format-sql: true
-      show-sql: true
+      hibernate:
+        format_sql: true
+        show-sql: true
+        use_sql_comments: true
 logging:
   level:
     org.hibernate:
-      type.descriptor.sql: DEBUG
-      SQL: DEBUG
+      type.descriptor.sql: trace
+      SQL: debug

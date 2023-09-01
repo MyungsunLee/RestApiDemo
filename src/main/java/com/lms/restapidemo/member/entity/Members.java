@@ -1,8 +1,11 @@
 package com.lms.restapidemo.member.entity;
 
+import com.lms.restapidemo.common.BaseTimeEntity;
 import com.lms.restapidemo.member.dto.memberSave.MemberSaveResponse;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
 import java.sql.Timestamp;
@@ -15,7 +18,7 @@ import java.time.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Members {
+public class Members extends BaseTimeEntity {
 
   @Id
   @Column(name = "MEMBER_ID", nullable = false)
@@ -28,13 +31,13 @@ public class Members {
   @Column(name = "PASSWORD", nullable = false)
   private String password;
 
-  @Temporal(TemporalType.TIMESTAMP)
+  /*@Temporal(TemporalType.TIMESTAMP)
   @Column(name = "CREATE_DATE")
-  private Timestamp createDate;
+  private LocalDateTime createDate;
 
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "UPDATE_DATE")
-  private Date updateDate;
+  private Date updateDate;*/
 
   @Column(name = "DELETE_YN")
   private char deleteYn;

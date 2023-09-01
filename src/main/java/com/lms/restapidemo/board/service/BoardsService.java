@@ -17,4 +17,7 @@ public class BoardsService {
         Boards result = boardRepository.save(board);
         return result.toBoardRegistResponseDto(result);
     }
+
+    // public BoardRegistResponse boardList()
+
 }

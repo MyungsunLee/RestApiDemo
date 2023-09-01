@@ -1,6 +1,8 @@
 package com.lms.restapidemo.board.boardRegistDto;
 
 import com.lms.restapidemo.board.entity.Boards;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,10 +13,13 @@ import lombok.Setter;
 @NoArgsConstructor
 public class BoardRegistRequest {
 
-  public String title;
-  public String contents;
+
+  @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "BOARD_ID_SEQ")
+  private Integer id;
+  private String title;
+  private String contents;
   @NotBlank(message = "작성자 입력 오류입니다")
-  public Integer writerId;
+  private Integer writerId;
 
   public Boards toEntity() {
     return Boards.builder()

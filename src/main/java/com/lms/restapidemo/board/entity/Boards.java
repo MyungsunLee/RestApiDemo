@@ -3,17 +3,18 @@ package com.lms.restapidemo.board.entity;
 import java.util.Date;
 
 import com.lms.restapidemo.board.boardRegistDto.BoardRegistResponse;
+import com.lms.restapidemo.common.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Getter
 @Setter
-@Table(name="BOARDS")
+@Table(name="BOARD")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Boards {
+public class Boards extends BaseTimeEntity {
 
   @Id
   @Column(name = "ID", nullable = false)
@@ -32,11 +33,13 @@ public class Boards {
   @Column(name = "WRITER_ID", nullable = false)
   private Integer writerId;
 
+  /*@Temporal(TemporalType.TIMESTAMP)
   @Column(name = "REGIST_DATE")
   private Date registDate;
 
+  @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "UPDATE_DATE")
-  private Date updateDate;
+  private Date updateDate;*/
 
   @Column(name = "DELETE_YN")
   private char deleteYn;
@@ -51,12 +54,13 @@ public class Boards {
   }
 
   public BoardRegistResponse toBoardRegistResponseDto(Boards boards) {
+
     return BoardRegistResponse.builder()
       .id(boards.getId())
       .title(boards.getTitle())
       .contents(boards.getContents())
-      .registDate(boards.getRegistDate())
-      .updateDate(boards.getUpdateDate())
+      .createDate(boards.getCreateDate())
+      .updateDate(boards.getUpdatedDate())
       .build();
 
   }

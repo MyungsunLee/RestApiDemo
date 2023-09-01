@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -22,17 +23,17 @@ public class BoardRegistResponse {
   private String contents;
 
   @NotNull
-  private Date registDate;
+  private LocalDateTime createDate;
 
   @NotNull
-  private Date updateDate;
+  private LocalDateTime updateDate;
 
   @Builder
-  public BoardRegistResponse(Integer id, String title, String contents, Date registDate, Date updateDate) {
+  public BoardRegistResponse(Integer id, String title, String contents, LocalDateTime createDate, LocalDateTime updateDate) {
     this.id = id;
     this.title = title;
     this.contents = contents;
-    this.registDate = registDate;
+    this.createDate = createDate;
     this.updateDate = updateDate;
   }
 }
