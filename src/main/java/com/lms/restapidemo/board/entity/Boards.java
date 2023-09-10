@@ -2,6 +2,7 @@ package com.lms.restapidemo.board.entity;
 
 import java.util.Date;
 
+import com.lms.restapidemo.board.boardReadDto.BoardReadResponse;
 import com.lms.restapidemo.board.boardRegistDto.BoardRegistResponse;
 import com.lms.restapidemo.common.BaseTimeEntity;
 import jakarta.persistence.*;
@@ -54,7 +55,6 @@ public class Boards extends BaseTimeEntity {
   }
 
   public BoardRegistResponse toBoardRegistResponseDto(Boards boards) {
-
     return BoardRegistResponse.builder()
       .id(boards.getId())
       .title(boards.getTitle())
@@ -62,6 +62,19 @@ public class Boards extends BaseTimeEntity {
       .createDate(boards.getCreateDate())
       .updateDate(boards.getUpdatedDate())
       .build();
-
   }
+
+  public BoardReadResponse toBoardReadResponeDto() {
+    return BoardReadResponse.builder()
+      .id(this.getId())
+      .title(this.getTitle())
+      .contents(this.getContents())
+      .createDate(this.getCreateDate())
+      .build();
+  }
+
+  /*public BoardReadResponse toBoardReadResponseDto(Boards boards) {
+    return BoardReadResponse.
+  }*/
+
 }
