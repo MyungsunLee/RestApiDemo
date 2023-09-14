@@ -16,10 +16,10 @@ public class BoardReadResponse {
   private String contents;
   private String writerName;
   private LocalDateTime createDate;
-  private char deleteYn;
+  private String deleteYn;
 
   @Builder
-  public BoardReadResponse(Integer id, String title, String contents, String writerName, LocalDateTime createDate, char deleteYn) {
+  public BoardReadResponse(Integer id, String title, String contents, String writerName, LocalDateTime createDate, String deleteYn) {
     this.id = id;
     this.title = title;
     this.contents = contents;

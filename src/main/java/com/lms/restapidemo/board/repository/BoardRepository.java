@@ -1,7 +1,5 @@
 package com.lms.restapidemo.board.repository;
 
-import com.lms.restapidemo.board.boardReadDto.BoardReadRequest;
-import com.lms.restapidemo.board.boardReadDto.BoardReadResponse;
 import com.lms.restapidemo.board.entity.Boards;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

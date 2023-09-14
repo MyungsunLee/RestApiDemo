@@ -5,6 +5,7 @@ import java.util.Date;
 import com.lms.restapidemo.board.boardReadDto.BoardReadResponse;
 import com.lms.restapidemo.board.boardRegistDto.BoardRegistResponse;
 import com.lms.restapidemo.common.BaseTimeEntity;
+import com.lms.restapidemo.member.entity.Members;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,16 +32,8 @@ public class Boards extends BaseTimeEntity {
   @Column(name = "IMAGES")
   private String images; // 우선 안씀, nullable
 
-  @Column(name = "WRITER_ID", nullable = false)
-  private Integer writerId;
-
-  /*@Temporal(TemporalType.TIMESTAMP)
-  @Column(name = "REGIST_DATE")
-  private Date registDate;
-
-  @Temporal(TemporalType.TIMESTAMP)
-  @Column(name = "UPDATE_DATE")
-  private Date updateDate;*/
+//  @Column(name = "WRITER_ID", nullable = false)
+//  private Integer writerId;
 
   @Column(name = "DELETE_YN")
   private char deleteYn;
@@ -48,10 +41,14 @@ public class Boards extends BaseTimeEntity {
   @Column(name = "DELETE_DATE")
   private Date deleteDate;
 
-  public Boards(String title, String contents, Integer writerId) {
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "WRITER_ID")
+  private Members members;
+
+  public Boards(String title, String contents) {
     this.title = title;
     this.contents = contents;
-    this.writerId = writerId;
+//    this.writerId = writerId;
   }
 
   public BoardRegistResponse toBoardRegistResponseDto(Boards boards) {
@@ -70,6 +67,8 @@ public class Boards extends BaseTimeEntity {
       .title(this.getTitle())
       .contents(this.getContents())
       .createDate(this.getCreateDate())
+      .deleteYn(String.valueOf( this.getDeleteYn()))
+      .writerName(this.getMembers().getMemberName())
       .build();
   }
 
