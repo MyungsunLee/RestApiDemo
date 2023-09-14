@@ -25,7 +25,7 @@ public class BoardRegistRequest {
     return Boards.builder()
       .title(title)
       .contents(contents)
-      .writerId(writerId)
+//      .writerId(writerId)
       .build();
   }
 }
