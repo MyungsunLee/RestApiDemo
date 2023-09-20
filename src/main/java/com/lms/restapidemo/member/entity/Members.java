@@ -1,17 +1,10 @@
 package com.lms.restapidemo.member.entity;
 
-import com.lms.restapidemo.board.entity.Boards;
 import com.lms.restapidemo.common.BaseTimeEntity;
+import com.lms.restapidemo.member.dto.memberRead.MemberReadResponse;
 import com.lms.restapidemo.member.dto.memberSave.MemberSaveResponse;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.util.Date;
-import java.sql.Timestamp;
-import java.time.*;
-import java.util.List;
 
 @Entity
 @Getter
@@ -34,11 +27,8 @@ public class Members extends BaseTimeEntity {
   private String password;
 
   @Column(name = "DELETE_YN")
-  private char deleteYn;
-
-  // @OneToMany(mappedBy = "members")
-//  @JoinTable(name = "BOARDS", joinColumns = @JoinColumn(name = "MEMBER_ID"))
-   // private List<Boards> boards;
+  @Builder.Default
+  private Character deleteYn = 'N';
 
   public Members(Integer memberId, String memberName, char deleteYn) {
     this.memberId = memberId;
@@ -49,6 +39,14 @@ public class Members extends BaseTimeEntity {
     return MemberSaveResponse.builder()
       .memberName(member.getMemberName())
       .memberId(member.getMemberId())
+      .build();
+  }
+  public MemberReadResponse toMemberReadResponse(Members member) {
+    return MemberReadResponse.builder()
+      .memberId(member.getMemberId())
+      .memberName(member.getMemberName())
+      .createDate(member.getCreateDate())
+      .updateDate(member.getUpdatedDate())
       .build();
   }
 }
