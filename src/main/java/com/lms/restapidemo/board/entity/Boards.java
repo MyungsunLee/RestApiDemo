@@ -71,9 +71,7 @@ public class Boards extends BaseTimeEntity {
       .writerName(this.getMembers().getMemberName())
       .build();
   }
-
   /*public BoardReadResponse toBoardReadResponseDto(Boards boards) {
     return BoardReadResponse.
   }*/
-
 }
