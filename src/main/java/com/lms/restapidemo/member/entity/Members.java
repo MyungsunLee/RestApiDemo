@@ -1,5 +1,6 @@
 package com.lms.restapidemo.member.entity;
 
+import com.lms.restapidemo.board.boardReadDto.BoardReadResponse;
 import com.lms.restapidemo.common.BaseTimeEntity;
 import com.lms.restapidemo.member.dto.memberRead.MemberReadResponse;
 import com.lms.restapidemo.member.dto.memberSave.MemberSaveResponse;
@@ -46,7 +47,8 @@ public class Members extends BaseTimeEntity {
       .memberId(member.getMemberId())
       .memberName(member.getMemberName())
       .createDate(member.getCreateDate())
-      .updateDate(member.getUpdatedDate())
+      .updateDate(member.getUpdateDate())
       .build();
   }
+
 }

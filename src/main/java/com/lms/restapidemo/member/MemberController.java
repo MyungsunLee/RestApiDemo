@@ -8,6 +8,8 @@ import com.lms.restapidemo.member.dto.memberSave.MemberSaveRequest;
 import com.lms.restapidemo.member.dto.memberSave.MemberSaveResponse;
 import com.lms.restapidemo.member.entity.Members;
 import com.lms.restapidemo.member.service.MemberService;
+import jakarta.annotation.Nullable;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -17,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/members")
@@ -34,14 +37,13 @@ public class MemberController {
     return new ResponseEntity(memberSaveResponse, HttpStatus.OK);
   }
   @GetMapping("")
-  public ResponseEntity getMemberList(@RequestParam String memberName, Integer memberId, String searchCondition, @PageableDefault(size=10, page = 0, sort="createDate", direction = Sort.Direction.DESC) Pageable pageable) {
-    System.out.println(memberName);
-    System.out.println(memberId);
-    System.out.println(searchCondition);
+  public ResponseEntity getMemberList(@RequestParam @Nullable Optional<String> searchCondition, String memberName, Integer memberId, @PageableDefault(size=10, page = 0, sort="createDate", direction = Sort.Direction.DESC) Pageable pageable) {
+
+
     ResponseEntity re = new ResponseEntity(HttpStatus.OK);
 
-    MemberReadRequest memberReadRequest = new MemberReadRequest(memberId, memberName, searchCondition);
-    List<MemberReadResponse> memberReadResponses = memberService.memberReadListByFilter(memberReadRequest, pageable);
+    MemberReadRequest memberReadRequest = new MemberReadRequest(memberId, memberName, searchCondition.orElse(""));
+    Page<MemberReadResponse> memberReadResponses = memberService.memberReadListByFilter(memberReadRequest, pageable);
     return new ResponseEntity(memberReadResponses,HttpStatus.OK);
   }
 

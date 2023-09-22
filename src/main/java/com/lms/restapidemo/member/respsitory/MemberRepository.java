@@ -30,7 +30,7 @@ public interface MemberRepository extends JpaRepository<Members, Integer> {
    * @param pageable the pageable
    * @return the list
    */
-  List<Members> findByMemberId(Integer memberId, Pageable pageable);
+  Page<Members> findByMemberId(Integer memberId, Pageable pageable);
 
   /**
    * Find members list by name.
@@ -39,7 +39,7 @@ public interface MemberRepository extends JpaRepository<Members, Integer> {
    * @param pageable   the pageable
    * @return the list
    */
-  List<Members> findByMemberNameContains(String memberName, Pageable pageable);
+  Page<Members> findByMemberNameContains(String memberName, Pageable pageable);
 
   Page<Members> findAll(Pageable pageable);
 

@@ -9,6 +9,7 @@ import com.lms.restapidemo.member.dto.memberSave.MemberSaveResponse;
 import com.lms.restapidemo.member.entity.Members;
 import com.lms.restapidemo.member.respsitory.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.lms.restapidemo.common.EncryptPassword;
@@ -34,19 +35,18 @@ public class MemberService {
     List<MemberReadResponse> memberReadResponses = members.stream().map(e -> e.toMemberReadResponse(e)).toList();
     return memberReadResponses;
   }
-  public List<MemberReadResponse> memberReadListByFilter(MemberReadRequest memberReadRequest, Pageable pageable) {
+  public Page<MemberReadResponse> memberReadListByFilter(MemberReadRequest memberReadRequest, Pageable pageable) {
 
-    List<MemberReadResponse> memberReadResponses = null;
-    List<Members> members = new ArrayList<Members>();
+    Page<Members> members = null;
     if(memberReadRequest.getSearchCondition().equals("memberName")) {
       members = memberRepository.findByMemberNameContains(memberReadRequest.getMemberName(), pageable);
     }else if(memberReadRequest.getSearchCondition().equals("memberId")){
       members = memberRepository.findByMemberId(memberReadRequest.getMemberId(), pageable);
     }else {
-      members = (List<Members>) memberRepository.findAll(pageable);
+      members = memberRepository.findAll(pageable);
     }
-    memberReadResponses = members.stream().map(e -> e.toMemberReadResponse(e)).toList();
 
+    Page<MemberReadResponse> memberReadResponses = new MemberReadResponse().toMemberReadDtoList(members);
     return memberReadResponses;
   }
 
