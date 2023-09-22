@@ -1,9 +1,11 @@
 package com.lms.restapidemo.board.boardReadDto;
 
+import com.lms.restapidemo.board.entity.Boards;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
 
@@ -28,4 +30,15 @@ public class BoardReadResponse {
     this.deleteYn = deleteYn;
   }
 
+  /* Page<Entity> -> Page<Dto> 변환처리 */
+  public Page<BoardReadResponse> toBardReadDtoList(Page<Boards> boardList){
+    Page<BoardReadResponse> boardDtoList = boardList.map(m -> BoardReadResponse.builder()
+      .id(m.getId())
+      .title(m.getTitle())
+      .contents(m.getContents())
+      .writerName(m.getMembers().getMemberName())
+      .createDate(m.getCreateDate())
+      .build());
+    return boardDtoList;
+  }
 }
