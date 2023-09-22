@@ -57,7 +57,7 @@ public class Boards extends BaseTimeEntity {
       .title(boards.getTitle())
       .contents(boards.getContents())
       .createDate(boards.getCreateDate())
-      .updateDate(boards.getUpdatedDate())
+      .updateDate(boards.getUpdateDate())
       .build();
   }
 

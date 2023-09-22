@@ -15,13 +15,18 @@ public class BoardReadRequest {
   private String title;
   private String contents;
   private Integer writerId;
+  private String writerName;
   private char deleteYn;
 
+  private String searchCondition;
+
   @Builder
-  public BoardReadRequest(String title, String contents, Integer writerId, char deleteYn) {
+  public BoardReadRequest(String title, String contents, Integer writerId, char deleteYn, String writerName, String searchCondition) {
     this.title = title;
     this.contents = contents;
     this.writerId = writerId;
     this.deleteYn = deleteYn;
+    this.writerName = writerName;
+    this.searchCondition = searchCondition;
   }
 }

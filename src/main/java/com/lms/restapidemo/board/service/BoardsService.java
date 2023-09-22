@@ -7,11 +7,17 @@ import com.lms.restapidemo.board.boardRegistDto.BoardRegistResponse;
 import com.lms.restapidemo.board.entity.Boards;
 import com.lms.restapidemo.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.Pageable;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 @RequiredArgsConstructor
@@ -25,9 +31,22 @@ public class BoardsService {
     }
 
 
-    public List<BoardReadResponse> findByDeleteYn(char deleteYn, Pageable pageable) {
-        List<Boards> boardsList = boardRepository.findByDeleteYn(deleteYn, pageable);
-        return boardsList.stream().map(e -> e.toBoardReadResponeDto()).toList();
+    public Page<BoardReadResponse> findBySearchCondition(BoardReadRequest boardReadRequest, Pageable pageable) {
+
+        String searchCondition = boardReadRequest.getSearchCondition();
+
+        Page<Boards> boardsList = null;
+
+        if ("writerName".equals(searchCondition)) {
+            // boardRepository.findBy
+        } else if ("title".equals(searchCondition)) {
+            boardsList = boardRepository.findByTitleContains(boardReadRequest.getTitle(), pageable);
+        } else if ("contents".equals(searchCondition)) {
+            boardsList = boardRepository.findByContentsContains(boardReadRequest.getContents(), pageable);
+        }
+
+        Page<BoardReadResponse> boardReadResponses = new BoardReadResponse().toBardReadDtoList(boardsList);
+        return boardReadResponses;
     }
 
     public BoardReadResponse findById(Integer id) {
