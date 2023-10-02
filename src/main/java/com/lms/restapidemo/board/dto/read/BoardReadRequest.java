@@ -1,12 +1,9 @@
-package com.lms.restapidemo.board.boardReadDto;
+package com.lms.restapidemo.board.dto.read;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.cglib.core.Local;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Setter

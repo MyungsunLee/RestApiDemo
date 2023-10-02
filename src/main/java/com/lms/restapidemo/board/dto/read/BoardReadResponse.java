@@ -1,4 +1,4 @@
-package com.lms.restapidemo.board.boardReadDto;
+package com.lms.restapidemo.board.dto.read;
 
 import com.lms.restapidemo.board.entity.Boards;
 import lombok.Builder;

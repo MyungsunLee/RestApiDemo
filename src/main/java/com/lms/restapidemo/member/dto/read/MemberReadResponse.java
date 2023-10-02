@@ -1,7 +1,5 @@
-package com.lms.restapidemo.member.dto.memberRead;
+package com.lms.restapidemo.member.dto.read;
 
-import com.lms.restapidemo.board.boardReadDto.BoardReadResponse;
-import com.lms.restapidemo.board.entity.Boards;
 import com.lms.restapidemo.member.entity.Members;
 import lombok.*;
 import org.springframework.data.domain.Page;

@@ -1,4 +1,4 @@
-package com.lms.restapidemo.member.dto.memberSave;
+package com.lms.restapidemo.member.dto.create;
 
 import lombok.Builder;
 import lombok.Getter;

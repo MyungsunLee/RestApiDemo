@@ -1,7 +1,6 @@
-package com.lms.restapidemo.member.dto.memberSave;
+package com.lms.restapidemo.member.dto.create;
 
 import com.lms.restapidemo.member.entity.Members;
-import jakarta.persistence.Entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

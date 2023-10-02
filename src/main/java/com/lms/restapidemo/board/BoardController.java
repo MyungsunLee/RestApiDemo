@@ -1,9 +1,9 @@
 package com.lms.restapidemo.board;
 
-import com.lms.restapidemo.board.boardReadDto.BoardReadRequest;
-import com.lms.restapidemo.board.boardReadDto.BoardReadResponse;
-import com.lms.restapidemo.board.boardRegistDto.BoardRegistRequest;
-import com.lms.restapidemo.board.boardRegistDto.BoardRegistResponse;
+import com.lms.restapidemo.board.dto.read.BoardReadRequest;
+import com.lms.restapidemo.board.dto.read.BoardReadResponse;
+import com.lms.restapidemo.board.dto.create.BoardRegistRequest;
+import com.lms.restapidemo.board.dto.create.BoardRegistResponse;
 import com.lms.restapidemo.board.service.BoardsService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,8 +12,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * The type Board controller.

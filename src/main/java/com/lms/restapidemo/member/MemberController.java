@@ -1,14 +1,18 @@
 package com.lms.restapidemo.member;
 
-import com.lms.restapidemo.member.dto.memberLogin.MemberLoginRequest;
-import com.lms.restapidemo.member.dto.memberLogin.MemberLoginResponse;
-import com.lms.restapidemo.member.dto.memberRead.MemberReadRequest;
-import com.lms.restapidemo.member.dto.memberRead.MemberReadResponse;
-import com.lms.restapidemo.member.dto.memberSave.MemberSaveRequest;
-import com.lms.restapidemo.member.dto.memberSave.MemberSaveResponse;
-import com.lms.restapidemo.member.entity.Members;
+import com.lms.restapidemo.board.dto.update.BoardPutRequest;
+import com.lms.restapidemo.common.ResponseEntityFactory;
+import com.lms.restapidemo.common.exception.ApiException;
+import com.lms.restapidemo.common.exception.ExceptionEnum;
+import com.lms.restapidemo.member.dto.login.MemberLoginRequest;
+import com.lms.restapidemo.member.dto.login.MemberLoginResponse;
+import com.lms.restapidemo.member.dto.read.MemberReadRequest;
+import com.lms.restapidemo.member.dto.read.MemberReadResponse;
+import com.lms.restapidemo.member.dto.create.MemberSaveRequest;
+import com.lms.restapidemo.member.dto.create.MemberSaveResponse;
 import com.lms.restapidemo.member.service.MemberService;
 import jakarta.annotation.Nullable;
+import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -18,7 +22,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -31,29 +34,27 @@ public class MemberController {
   }
 
   @PostMapping("")
-  public ResponseEntity createMember(@RequestBody MemberSaveRequest memberSaveRequest, Model model) throws Exception {
-
+  public ResponseEntity createMember(@RequestBody MemberSaveRequest memberSaveRequest) throws Exception {
     MemberSaveResponse memberSaveResponse = memberService.createMember(memberSaveRequest);
-    return new ResponseEntity(memberSaveResponse, HttpStatus.OK);
+    return ResponseEntityFactory.make(memberSaveResponse);
   }
   @GetMapping("")
   public ResponseEntity getMemberList(@RequestParam @Nullable Optional<String> searchCondition, String memberName, Integer memberId, @PageableDefault(size=10, page = 0, sort="createDate", direction = Sort.Direction.DESC) Pageable pageable) {
-
-
-    ResponseEntity re = new ResponseEntity(HttpStatus.OK);
-
     MemberReadRequest memberReadRequest = new MemberReadRequest(memberId, memberName, searchCondition.orElse(""));
     Page<MemberReadResponse> memberReadResponses = memberService.memberReadListByFilter(memberReadRequest, pageable);
+    // TBD, 나중에 get으로 dto 받아오는 방법 모색
     return new ResponseEntity(memberReadResponses,HttpStatus.OK);
   }
 
-  // public ResponseEntity getMemberListByCondition()
-
   @PostMapping("/login")
   public ResponseEntity login(@RequestBody MemberLoginRequest memberLoginRequest, Model model) throws Exception {
-
     MemberLoginResponse memberLoginResponse = memberService.findMembersByMemberNameAndPassword(memberLoginRequest);
     return new ResponseEntity(memberLoginResponse, HttpStatus.OK);
+  }
+
+  @PostMapping("/delete")
+  public ResponseEntity memberDelete(@RequestBody BoardPutRequest boardPutRequest) {
+    return new ResponseEntity(HttpStatus.OK);
   }
 }
 

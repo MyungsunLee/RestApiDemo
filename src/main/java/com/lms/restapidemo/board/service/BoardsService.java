@@ -1,23 +1,18 @@
 package com.lms.restapidemo.board.service;
 
-import com.lms.restapidemo.board.boardReadDto.BoardReadRequest;
-import com.lms.restapidemo.board.boardReadDto.BoardReadResponse;
-import com.lms.restapidemo.board.boardRegistDto.BoardRegistRequest;
-import com.lms.restapidemo.board.boardRegistDto.BoardRegistResponse;
+import com.lms.restapidemo.board.dto.read.BoardReadRequest;
+import com.lms.restapidemo.board.dto.read.BoardReadResponse;
+import com.lms.restapidemo.board.dto.create.BoardRegistRequest;
+import com.lms.restapidemo.board.dto.create.BoardRegistResponse;
 import com.lms.restapidemo.board.entity.Boards;
 import com.lms.restapidemo.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.Pageable;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-
-import static java.util.stream.Collectors.toList;
 
 @Service
 @RequiredArgsConstructor

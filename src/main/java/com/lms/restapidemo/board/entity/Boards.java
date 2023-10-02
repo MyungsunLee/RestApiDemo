@@ -2,8 +2,8 @@ package com.lms.restapidemo.board.entity;
 
 import java.util.Date;
 
-import com.lms.restapidemo.board.boardReadDto.BoardReadResponse;
-import com.lms.restapidemo.board.boardRegistDto.BoardRegistResponse;
+import com.lms.restapidemo.board.dto.read.BoardReadResponse;
+import com.lms.restapidemo.board.dto.create.BoardRegistResponse;
 import com.lms.restapidemo.common.BaseTimeEntity;
 import com.lms.restapidemo.member.entity.Members;
 import jakarta.persistence.*;
