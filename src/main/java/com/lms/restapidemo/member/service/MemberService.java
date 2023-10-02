@@ -1,11 +1,11 @@
 package com.lms.restapidemo.member.service;
 
-import com.lms.restapidemo.member.dto.memberLogin.MemberLoginRequest;
-import com.lms.restapidemo.member.dto.memberLogin.MemberLoginResponse;
-import com.lms.restapidemo.member.dto.memberRead.MemberReadRequest;
-import com.lms.restapidemo.member.dto.memberRead.MemberReadResponse;
-import com.lms.restapidemo.member.dto.memberSave.MemberSaveRequest;
-import com.lms.restapidemo.member.dto.memberSave.MemberSaveResponse;
+import com.lms.restapidemo.member.dto.login.MemberLoginRequest;
+import com.lms.restapidemo.member.dto.login.MemberLoginResponse;
+import com.lms.restapidemo.member.dto.read.MemberReadRequest;
+import com.lms.restapidemo.member.dto.read.MemberReadResponse;
+import com.lms.restapidemo.member.dto.create.MemberSaveRequest;
+import com.lms.restapidemo.member.dto.create.MemberSaveResponse;
 import com.lms.restapidemo.member.entity.Members;
 import com.lms.restapidemo.member.respsitory.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.lms.restapidemo.common.EncryptPassword;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

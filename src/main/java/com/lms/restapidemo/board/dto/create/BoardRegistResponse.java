@@ -1,13 +1,11 @@
-package com.lms.restapidemo.board.boardRegistDto;
+package com.lms.restapidemo.board.dto.create;
 
-import com.lms.restapidemo.board.entity.Boards;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
 @NoArgsConstructor

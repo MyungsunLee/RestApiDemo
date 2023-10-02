@@ -1,4 +1,4 @@
-package com.lms.restapidemo.member.dto.memberRead;
+package com.lms.restapidemo.member.dto.read;
 
 import lombok.*;
 

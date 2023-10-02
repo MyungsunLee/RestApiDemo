@@ -1,9 +1,8 @@
 package com.lms.restapidemo.member.entity;
 
-import com.lms.restapidemo.board.boardReadDto.BoardReadResponse;
 import com.lms.restapidemo.common.BaseTimeEntity;
-import com.lms.restapidemo.member.dto.memberRead.MemberReadResponse;
-import com.lms.restapidemo.member.dto.memberSave.MemberSaveResponse;
+import com.lms.restapidemo.member.dto.read.MemberReadResponse;
+import com.lms.restapidemo.member.dto.create.MemberSaveResponse;
 import jakarta.persistence.*;
 import lombok.*;
 

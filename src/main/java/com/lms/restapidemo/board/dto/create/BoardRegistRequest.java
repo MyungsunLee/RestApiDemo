@@ -1,4 +1,4 @@
-package com.lms.restapidemo.board.boardRegistDto;
+package com.lms.restapidemo.board.dto.create;
 
 import com.lms.restapidemo.board.entity.Boards;
 import jakarta.persistence.GeneratedValue;

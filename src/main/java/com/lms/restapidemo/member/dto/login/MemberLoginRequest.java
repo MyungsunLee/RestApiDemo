@@ -1,4 +1,4 @@
-package com.lms.restapidemo.member.dto.memberLogin;
+package com.lms.restapidemo.member.dto.login;
 
 import com.lms.restapidemo.common.EncryptPassword;
 import com.lms.restapidemo.member.entity.Members;
