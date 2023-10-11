@@ -41,4 +41,13 @@ public class BoardReadResponse {
       .build());
     return boardDtoList;
   }
+
+  public Boards toEntity(BoardReadResponse boardReadResponse) {
+    return Boards.builder()
+      .id(boardReadResponse.getId())
+      .contents(boardReadResponse.getContents())
+      .title(boardReadResponse.getTitle())
+      .deleteYn(boardReadResponse.getDeleteYn().charAt(0))
+      .build();
+  }
 }

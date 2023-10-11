@@ -24,7 +24,7 @@ public class ExceptionAdvice {
       .status(ExceptionEnum.RUNTIME_EXCEPTION.getStatus())
       .body(ExceptionEntity.builder()
         .errorCode(ExceptionEnum.RUNTIME_EXCEPTION.getCode())
-        .errorMessage(e.getMessage())
+        .errorMessage(ExceptionEnum.RUNTIME_EXCEPTION.getMessage())
         .build());
   }
 }

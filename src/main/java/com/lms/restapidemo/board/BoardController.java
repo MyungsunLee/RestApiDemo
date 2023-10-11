@@ -56,8 +56,7 @@ public class BoardController {
    * @return the response entity
    */
   @GetMapping("")
-//  public ResponseEntity readBoardList(@RequestParam BoardReadRequest boardReadRequest, @PageableDefault(size=10, page = 0, sort="createDate", direction = Sort.Direction.DESC) Pageable pageable) {
-  public ResponseEntity readBoardList(@RequestParam String searchCondition, String title, String contents, @PageableDefault(size=10, page = 0, sort="createDate", direction = Sort.Direction.DESC) Pageable pageable) {
+  public ResponseEntity readBoardList(@RequestParam String searchCondition, String title, String contents, @PageableDefault(size = 10, page = 0, sort = "createDate", direction = Sort.Direction.DESC) Pageable pageable) {
 
     BoardReadRequest boardReadRequest = new BoardReadRequest();
     boardReadRequest.setSearchCondition(searchCondition);
@@ -80,4 +79,15 @@ public class BoardController {
     return new ResponseEntity(boardReadResponse, HttpStatus.OK);
   }
 
+  /**
+   * Board delete response entity.
+   *
+   * @param id the id
+   * @return the response entity
+   */
+  @DeleteMapping("/{id}")
+  public ResponseEntity boardDelete(@PathVariable("id") Integer id) {
+    boardsService.deleteById(id);
+    return new ResponseEntity(null, HttpStatus.OK);
+  }
 }

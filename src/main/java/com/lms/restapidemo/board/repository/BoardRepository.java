@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The interface Board repository.
@@ -18,7 +19,7 @@ public interface BoardRepository extends JpaRepository<Boards, Integer> {
    * @param pageable the pageable
    * @return the list
    */
-  public List<Boards> findByDeleteYn(char deleteYn, Pageable pageable);
+  List<Boards> findByDeleteYn(char deleteYn, Pageable pageable);
 
   /**
    * Find by title contains list.
@@ -27,7 +28,7 @@ public interface BoardRepository extends JpaRepository<Boards, Integer> {
    * @param pageable the pageable
    * @return the list
    */
-  public Page<Boards> findByTitleContains(String title, Pageable pageable);
+  Page<Boards> findByTitleContains(String title, Pageable pageable);
 
   /**
    * Find by contents contains list.
@@ -39,4 +40,9 @@ public interface BoardRepository extends JpaRepository<Boards, Integer> {
   public Page<Boards> findByContentsContains(String contents, Pageable pageable);
 
   Page<Boards> findById(Integer id, Pageable pageable);
+
+  Optional<Boards> findById(Integer id);
+
+  void deleteById(Integer id);
+
 }
