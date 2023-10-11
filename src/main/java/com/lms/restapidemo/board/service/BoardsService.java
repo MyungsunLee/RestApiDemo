@@ -6,13 +6,17 @@ import com.lms.restapidemo.board.dto.create.BoardRegistRequest;
 import com.lms.restapidemo.board.dto.create.BoardRegistResponse;
 import com.lms.restapidemo.board.entity.Boards;
 import com.lms.restapidemo.board.repository.BoardRepository;
+import com.lms.restapidemo.common.exception.ApiException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
+
+import static com.lms.restapidemo.common.exception.ExceptionEnum.NO_SUCH_DATA_EXCEPTION;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +31,6 @@ public class BoardsService {
 
 
     public Page<BoardReadResponse> findBySearchCondition(BoardReadRequest boardReadRequest, Pageable pageable) {
-
         String searchCondition = boardReadRequest.getSearchCondition();
 
         Page<Boards> boardsList = null;
@@ -48,6 +51,16 @@ public class BoardsService {
         Optional<Boards> board = boardRepository.findById(id);
         BoardReadResponse boardREadResponse = board.orElseThrow().toBoardReadResponeDto();
         return boardREadResponse;
+    }
+
+    public void deleteById(Integer id) {
+        Optional<Boards> boards = boardRepository.findById(id);
+        if (boards.isEmpty()) {
+            throw new ApiException(NO_SUCH_DATA_EXCEPTION);
+        }else {
+            boards.get().setDeleteYn('Y');
+            boardRepository.save(boards.get());
+        }
     }
 
 }
