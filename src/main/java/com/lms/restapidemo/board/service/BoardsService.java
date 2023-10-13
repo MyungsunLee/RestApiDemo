@@ -38,9 +38,9 @@ public class BoardsService {
         if ("writerName".equals(searchCondition)) {
             // boardRepository.findBy
         } else if ("title".equals(searchCondition)) {
-            boardsList = boardRepository.findByTitleContains(boardReadRequest.getTitle(), pageable);
+            boardsList = boardRepository.findByTitleContainsAndDeleteYn(boardReadRequest.getTitle(), pageable, 'N');
         } else if ("contents".equals(searchCondition)) {
-            boardsList = boardRepository.findByContentsContains(boardReadRequest.getContents(), pageable);
+            boardsList = boardRepository.findByContentsContainsAndDeleteYn(boardReadRequest.getContents(), pageable, 'N');
         }
 
         Page<BoardReadResponse> boardReadResponses = new BoardReadResponse().toBardReadDtoList(boardsList);
@@ -54,7 +54,7 @@ public class BoardsService {
     }
 
     public void deleteById(Integer id) {
-        Optional<Boards> boards = boardRepository.findById(id);
+        Optional<Boards> boards = boardRepository.findByIdAndDeleteYn(id, 'N');
         if (boards.isEmpty()) {
             throw new ApiException(NO_SUCH_DATA_EXCEPTION);
         }else {

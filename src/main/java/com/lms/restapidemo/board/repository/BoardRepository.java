@@ -28,7 +28,7 @@ public interface BoardRepository extends JpaRepository<Boards, Integer> {
    * @param pageable the pageable
    * @return the list
    */
-  Page<Boards> findByTitleContains(String title, Pageable pageable);
+  Page<Boards> findByTitleContainsAndDeleteYn(String title, Pageable pageable, char deleteYn);
 
   /**
    * Find by contents contains list.
@@ -37,11 +37,11 @@ public interface BoardRepository extends JpaRepository<Boards, Integer> {
    * @param pageable the pageable
    * @return the list
    */
-  public Page<Boards> findByContentsContains(String contents, Pageable pageable);
+  public Page<Boards> findByContentsContainsAndDeleteYn(String contents, Pageable pageable, char deleteYn);
 
   Page<Boards> findById(Integer id, Pageable pageable);
 
-  Optional<Boards> findById(Integer id);
+  Optional<Boards> findByIdAndDeleteYn(Integer id, char deleteYn);
 
   void deleteById(Integer id);
 
