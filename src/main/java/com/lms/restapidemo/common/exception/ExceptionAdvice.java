@@ -27,4 +27,15 @@ public class ExceptionAdvice {
         .errorMessage(ExceptionEnum.RUNTIME_EXCEPTION.getMessage())
         .build());
   }
+
+  @ExceptionHandler({Exception.class})
+  public ResponseEntity<ExceptionEntity> exceptionHandler2(HttpServletRequest request, final Exception e) {
+    e.printStackTrace();
+    return ResponseEntity
+      .status(ExceptionEnum.RUNTIME_EXCEPTION.getStatus())
+      .body(ExceptionEntity.builder()
+        .errorCode(ExceptionEnum.RUNTIME_EXCEPTION.getCode())
+        .errorMessage(ExceptionEnum.RUNTIME_EXCEPTION.getMessage())
+        .build());
+  }
 }
