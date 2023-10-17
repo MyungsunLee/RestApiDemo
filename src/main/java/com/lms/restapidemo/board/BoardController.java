@@ -90,4 +90,19 @@ public class BoardController {
     boardsService.deleteById(id);
     return new ResponseEntity(null, HttpStatus.OK);
   }
+
+  /**
+   * Comment create response entity.
+   *
+   * @param id the id
+   * @return the response entity
+   */
+  @PostMapping("/{id}/comments")
+  public ResponseEntity commentCreate(@PathVariable("id") Integer id) {
+
+
+    return new ResponseEntity(null, HttpStatus.OK);
+  }
+
+
 }
